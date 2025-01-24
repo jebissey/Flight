@@ -1,0 +1,36 @@
+---
+produkt-1:
+  title: PHP 8 und MySQL <sup>(Demo)</sup>
+  logo: 'https://m.media-amazon.com/images/I/71lrxlp9KKL._SY466_.jpg'
+  url: >
+    https://flightcms.de
+  description: >
+    Dynamische Webseiten mit PHP und MySQL programmieren: Alles, was Sie dafür
+    wissen müssen, steht in diesem Buch. Profitieren Sie von einer
+    praxisorientierten Einführung und lernen Sie alle neuen Sprachfeatures von
+    PHP 8 kennen. Die Autoren Christian Wenz und Tobias Hauser sind erfahrene
+    PHP-Programmierer und Datenbankspezialisten.
+
+produkt-2:
+  title: HTML und CSS <sup>(Demo)</sup>
+  logo: 'https://m.media-amazon.com/images/I/71OVjJFRbiS._SY466_.jpg'
+  url: >
+    https://flightcms.de
+  description: >
+    Moderne Web-Technologien für moderne Websites! In diesem Standardwerk gibt
+    Ihnen Jürgen Wolf alle Werkzeuge an die Hand, die sie für einen starken
+    Auftritt im Web benötigen. Lernen Sie alle Grundlagen von HTML, CSS und
+    JavaScript kennen und erweitern Sie Ihr Wissen mit diesem umfassenden Lern-
+    und Nachschlagewerk.
+    
+produkt-3:
+  title: PHP & MySQL Schnelleinstieg Programmieren lernen in 14 Tagen <sup>(Demo)</sup>
+  logo: 'https://m.media-amazon.com/images/I/81ncCZY9xSL._SY466_.jpg'
+  url: >
+    https://flightcms.de
+  description: >
+    Mit diesem Buch gelingt Ihnen der einfache Einstieg in die Webentwicklung mit 
+    PHP und MySQL. Alle Grundlagen werden in 14 Kapiteln anschaulich und leicht 
+    nachvollziehbar anhand von Codebeispielen erläutert. Übungsaufgaben am Ende 
+    der Kapitel helfen Ihnen, das neu gewonnene Wissen schnell praktisch 
+    anzuwenden und zu vertiefen.

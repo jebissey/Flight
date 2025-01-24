@@ -1,0 +1,3 @@
+user-agent: *
+allow: /
+Sitemap: http://flightcms.de/sitemap.xml

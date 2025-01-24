@@ -1,0 +1,133 @@
+---
+Wikipedia-FlightCMS:
+  confirmed:   true
+  title:       Wikipedia
+  logo:        
+  url:         https://de.wikipedia.org/wiki/FlightCMS
+  description: Der Wikipedia-Artikel zu "FlightCMS" mit Verweisen und hilfreichen Links zur verwendeten Technik. 
+
+CMSWorkbench:
+  confirmed:   true
+  title:       CMSWorkbench
+  logo:
+  url:         https://cmsworkbench.de/category/flightcms
+  description: Tipps und Tricks für den ersten Start mit dem neuen "FlightCMS" auf CMSWorkbench.
+    
+Webwiki:
+  confirmed:   true
+  title:       Webwiki
+  logo:
+  url:         https://www.webwiki.de/flightcms.de
+  description: FlightCMS ist im Webwiki eingetragen "Webwiki-FlightCMS" und kann dort bewertet werden.
+
+Goermezer:
+  confirmed:   true
+  title:       Goermezer
+  logo:
+  url:         https://www.goermezer.de/content-management-systeme-ohne-datenbank/flightcms-ein-schnelles-cms-auf-basis-des-php-flight-microframeworks.html
+  description: Eine gute "Übersicht von Flatfile Content Management Systemen" von Mustafa Görmezer.
+
+Wiki-Liste:
+  confirmed:   false
+  title:       Wiki
+  logo:
+  url:         https://de.wikipedia.org/wiki/Liste_von_Content-Management-Systemen
+  description: In der "Wiki Liste" von Content Management Systemen ist das kostenlose FlightCMS eingetragen.
+
+Reintech-Media:
+  confirmed:   true
+  title:       Reintech Media
+  logo:
+  url:         https://reintech.io/blog/building-php-web-application-flight-micro-framework
+  description: Check out Article "Building a PHP Web Application with the Flight Micro-framework" by Sasha Bondar.
+
+GIMP-Handbuch:
+  confirmed:   true
+  title:       GIMP-Handbuch
+  logo:
+  url:         https://gimp-handbuch.de
+  description: Das renomierte GIMP-Handbuch nutzt "FlightCMS" für die Dokumentation der Tutorials.
+
+Webgo:
+  confirmed:   false
+  title:       Webgo
+  logo:
+  url:         https://www.webgo.de/blog/flat-file-cms-was-ist-das/
+  description: Der sehr informative Artikel "Was ist ein Flat-File-CMS?"" ist auf Webgo zu lesen (u.a. auch FlightCMS).
+
+NureinBlog:
+  confirmed:   true
+  title:       NureinBlog
+  logo:
+  url:         https://nureinblog.at/10758-vorschlaege-fuer-ein-flat-file-cms
+  description: Eine Vorschlagsliste für "Flatfile CMS Vorschläge für ein Flat-File CMS" auf Nureinblog mit FlightCMS als Vorschlag.
+
+GNULinux:
+  confirmed:   true
+  title:       GNULinux
+  logo:
+  url:         https://gnulinux.ch/flat-file-cms-eine-uebersicht
+  description: Auf GNULinux gibt es eine "Übersicht Flat File CMS" Eine Übersicht über die beliebten Flatfile CMS im Web.
+
+EverybodyWiki:
+  confirmed:   true
+  title:       EverybodyWiki
+  logo:
+  url:         https://de.everybodywiki.com/FlightCMS
+  description: Eine kurze technische Beschreibung auf "FlightCMS" mit wichtigen Links zum Thema.
+
+DomainFactory:
+  confirmed:   false
+  title:       Domain Factory
+  logo:
+  url:         https://www.df.eu/blog/6-content-management-systeme-die-nicht-jeder-kennt/
+  description: Der Artikel "6 CMS die nicht jeder kennt" auf DomainFactory, mit Liste unbekannter Flatfile CMS.
+
+Cyon:
+  confirmed:   true
+  title:       Cyon
+  logo:
+  url:         https://www.cyon.ch/blog/5-Gruende-warum-ein-Flat-File-CMS-die-bessere-Wahl-ist
+  description: 5 Gründe, warum ein Flat-File-CMS die bessere Wahl als WordPress und Co. sein kann von Philipp Zeder.
+
+JuergenSchadek:
+  confirmed:   false
+  title:       Jürgen Schadek
+  logo:
+  url:         https://juergen-schadek.de/videos/statamic-cms-ein-frisches-modernes-flat-file-cms
+  description: 'Statamic CMS Ein frisches & modernes Flat-File-CMS' von Jürgen Schadek zum Einstig in das CMS.
+
+Abteilung:
+  confirmed:   false
+  title:       Abteilung
+  logo:
+  url:         https://abteilung.ch/story/3-moderne-cms-ohne-datenbank
+  description: '3 moderne CMS ohne Datenbank' und 'Was können Kirby, Grav & Jekyll?' von Pascal Widmer
+
+Assbach:
+  confirmed:   false
+  title:       Assbach
+  logo:
+  url:         https://assbach.de/blog/automad-vs-grav-vs-bludit-flatfile-cms
+  description: 'Flatfile-CMS Automad, Bludit und Grav im Vergleich' ein sehr lesenswerter Beitrag auf Assbach.
+
+ITsfoss:
+  confirmed:   true
+  title:       ITsfoss
+  logo:
+  url:         https://itsfoss.com/open-source-cms/
+  description: Eine praktische Liste von bekannten und unbekannten Content Management Systemen des Internets.
+
+ContentFly:
+  confirmed:   false
+  title:       ContentFly
+  logo:
+  url:         https://www.contentfly-cms.de/
+  description: Eine praktische Liste von bekannten und unbekannten Content Management Systemen des Internets.
+
+TobeWorks:
+  confirmed:   false
+  title:       TobeWorks
+  logo:
+  url:         https://tobeworks.de/artikel/flat-file-cms/
+  description: Eine praktische Liste von bekannten und unbekannten Content Management Systemen des Internets.

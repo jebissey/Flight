@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- created with FlightCMS.de -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+  <loc>localhost/</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/blazing-fast</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/dokumentation</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/dokumentation/das-index-routing</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/dokumentation/das-pages-model</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/dokumentation/der-category-controller</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/dokumentation/der-erste-beitrag</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/dokumentation/der-home-controller</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/dokumentation/der-post-controller</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/dokumentation/htaccess-bot-sperre</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/dokumentation/htaccess-umleitung</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/dokumentation/ip-sperre</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/mvc-patterns</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/plugins</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/plugins/basis-struktur-eines-plugin</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/plugins/plugin-add-author</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/plugins/plugin-affiliate</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/plugins/plugin-table-of-contents</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/templates</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/templates/cms-konstanten</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/templates/featured-posts</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>localhost/templates/template-variablen</loc>
+  <lastmod>2024-01-26</lastmod>
+  <priority>1.0</priority>
+</url>
+</urlset>

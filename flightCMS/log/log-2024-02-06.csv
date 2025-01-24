@@ -1,0 +1,14 @@
+05:33:46;http://localhost/;/plugins;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:33:49;http://localhost/plugins;/;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:35:06;http://localhost/;/dokumentation;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:35:43;http://localhost/;/dokumentation;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:35:54;http://localhost/dokumentation;/plugins/flightcms-plugin-allpages;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:36:08;http://localhost/dokumentation;/dokumentation/flightcms-log-as-csv;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:36:13;http://localhost/dokumentation/flightcms-log-as-csv;/;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:36:25;http://localhost/;/flightcms-mvc-patterns;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:36:28;http://localhost/flightcms-mvc-patterns;/dokumentation/flightcms-htaccess-bot-sperre;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:36:30;http://localhost/dokumentation/flightcms-htaccess-bot-sperre;/dokumentation/flightcms-category-controller;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:36:31;http://localhost/dokumentation/flightcms-category-controller;/dokumentation/flightcms-download-installation-setup;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:36:33;http://localhost/dokumentation/flightcms-download-installation-setup;/dokumentation/flightcms-pages-model;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:36:35;http://localhost/dokumentation/flightcms-pages-model;/plugins/flightcms-plugin-addauthor;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0
+05:36:39;http://localhost/plugins/flightcms-plugin-addauthor;/;'127.0.0.1;Mozilla/5.0 (Windows NT 10.0  Win64  x64  rv:122.0) Gecko/20100101 Firefox/122.0

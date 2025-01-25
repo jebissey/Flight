@@ -1,30 +1,86 @@
 <?php
-require_once 'vendor/autoload.php';
 
+namespace app\controllers;
+
+use PDO;
 use flight\Engine;
+use Exception;
 
-echo '<p>' . json_encode(\PDO::getAvailableDrivers()) . '<p>';
 
-if (!in_array('sqlite', PDO::getAvailableDrivers())) {
-    die('SQLite PDO driver is not available.');
-}
+class UserController {
+    private PDO $pdo;
+    private Engine $flight;
 
-try {
-    $pdo = new PDO('sqlite:users.sqlite');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    public function __construct(PDO $pdo, Engine $flight) {
+        $this->pdo = $pdo;
+        $this->flight = $flight;
+    }
 
-    $pdo->exec('CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        email TEXT UNIQUE
-    )');
-
-    $flight = new Engine();
-
-    // Home Route
-    $flight->route('GET /', function() use ($pdo) {
-        $stmt = $pdo->query('SELECT * FROM users');
+    // Routes { -----------------------------------------------------------
+    public function index() {
+        $stmt = $this->pdo->query('SELECT * FROM users');
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $this->renderIndexView($users);
+    }
+
+    public function add() {
+        $name = trim($_POST['name']);
+        $email = trim($_POST['email']);
+        
+        try {
+            $this->validateUserInput($name, $email);
+            $this->insertUser($name, $email);
+            $this->flight->redirect('/');
+        } catch (Exception $e) {
+            $this->flight->redirect('/?error=' . urlencode($e->getMessage()));
+        }
+    }
+
+    public function delete($id) {
+        try {
+            $stmt = $this->pdo->prepare('DELETE FROM users WHERE id = :id');
+            $stmt->execute(['id' => $id]);
+            $this->flight->redirect('/');
+        } catch (Exception $e) {
+            $this->flight->redirect('/?error=' . urlencode($e->getMessage()));
+        }
+    }
+
+    public function edit($id) {
+        $stmt = $this->pdo->prepare('SELECT * FROM users WHERE id = :id');
+        $stmt->execute(['id' => $id]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$user) {
+            $this->flight->redirect('/?error=User not found');
+            return;
+        }
+
+        // Use GET parameters if present (for error scenario)
+        $name = isset($_GET['name']) ? $_GET['name'] : $user['name'];
+        $email = isset($_GET['email']) ? $_GET['email'] : $user['email'];
+
+        $this->renderEditView($id, $name, $email);
+    }
+
+    public function update($id) {
+        $name = trim($_POST['name']);
+        $email = trim($_POST['email']);
+        
+        try {
+            $this->validateUserInput($name, $email);
+            $this->updateUser($id, $name, $email);
+            $this->flight->redirect('/');
+        } catch (Exception $e) {
+            $this->flight->redirect('/edit/' . $id . '?error=' . urlencode($e->getMessage()) . '&name=' . urlencode($name) . '&email=' . urlencode($email));
+        }
+    }
+    // Routes } -----------------------------------------------------------
+
+
+    // Views { -----------------------------------------------------------
+    private function renderIndexView($users) {
         ?>
         <!DOCTYPE html>
         <html>
@@ -87,55 +143,9 @@ try {
         </body>
         </html>
         <?php
-    });
+    }
 
-    // Add User Route
-    $flight->route('POST /add', function() use ($pdo, $flight) {
-        $name = trim($_POST['name']);
-        $email = trim($_POST['email']);
-        
-        try {
-            if (empty($name) || empty($email)) {
-                throw new Exception("Name and email cannot be empty");
-            }
-
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                throw new Exception("Invalid email format");
-            }
-
-            $stmt = $pdo->prepare('INSERT INTO users (name, email) VALUES (:name, :email)');
-            $stmt->execute(['name' => $name, 'email' => $email]);
-            $flight->redirect('/');
-        } catch (Exception $e) {
-            $flight->redirect('/?error=' . urlencode($e->getMessage()));
-        }
-    });
-
-    // Delete User Route
-    $flight->route('POST /delete/@id', function($id) use ($pdo, $flight) {
-        try {
-            $stmt = $pdo->prepare('DELETE FROM users WHERE id = :id');
-            $stmt->execute(['id' => $id]);
-            $flight->redirect('/');
-        } catch (Exception $e) {
-            $flight->redirect('/?error=' . urlencode($e->getMessage()));
-        }
-    });
-
-    // Edit User Route
-    $flight->route('GET /edit/@id', function($id) use ($pdo, $flight) {
-        $stmt = $pdo->prepare('SELECT * FROM users WHERE id = :id');
-        $stmt->execute(['id' => $id]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$user) {
-            $flight->redirect('/?error=User not found');
-            return;
-        }
-
-        // Use GET parameters if present (for error scenario)
-        $name = isset($_GET['name']) ? $_GET['name'] : $user['name'];
-        $email = isset($_GET['email']) ? $_GET['email'] : $user['email'];
+    private function renderEditView($id, $name, $email) {
         ?>
         <!DOCTYPE html>
         <html>
@@ -163,34 +173,29 @@ try {
         </body>
         </html>
         <?php
-    });
+    }
+    // Views } -----------------------------------------------------------
 
-    // Update User Route
-    $flight->route('POST /update/@id', function($id) use ($pdo, $flight) {
-        $name = trim($_POST['name']);
-        $email = trim($_POST['email']);
-        
-        try {
-            if (empty($name) || empty($email)) {
-                throw new Exception("Name and email cannot be empty");
-            }
-
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                // If email is invalid, redirect back to edit with error and original data
-                $flight->redirect('/edit/' . $id . '?error=Invalid email format&name=' . urlencode($name) . '&email=' . urlencode($email));
-                return;
-            }
-
-            $stmt = $pdo->prepare('UPDATE users SET name = :name, email = :email WHERE id = :id');
-            $stmt->execute(['name' => $name, 'email' => $email, 'id' => $id]);
-            $flight->redirect('/');
-        } catch (Exception $e) {
-            $flight->redirect('/?error=' . urlencode($e->getMessage()));
+    // Helpers { -----------------------------------------------------------
+    private function validateUserInput($name, $email) {
+        if (empty($name) || empty($email)) {
+            throw new Exception("Name and email cannot be empty");
         }
-    });
 
-    $flight->start();
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception("Invalid email format");
+        }
+    }
 
-} catch (PDOException $e) {
-    die('Database connection failed: ' . $e->getMessage());
+    private function insertUser($name, $email) {
+        $stmt = $this->pdo->prepare('INSERT INTO users (name, email) VALUES (:name, :email)');
+        $stmt->execute(['name' => $name, 'email' => $email]);
+    }
+
+    private function updateUser($id, $name, $email) {
+        $stmt = $this->pdo->prepare('UPDATE users SET name = :name, email = :email WHERE id = :id');
+        $stmt->execute(['name' => $name, 'email' => $email, 'id' => $id]);
+    }
+    // Helpers } -----------------------------------------------------------
 }
+

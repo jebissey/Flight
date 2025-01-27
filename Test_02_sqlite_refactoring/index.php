@@ -5,6 +5,7 @@ use flight\Engine;
 use DI\Container;
 use DI\ContainerBuilder;
 
+
 try {
     // Set up PHP-DI
     $containerBuilder = new ContainerBuilder();
@@ -19,6 +20,12 @@ try {
         },
         'app\controllers\UserController' => function (Container $container) {
             return new \app\controllers\UserController(
+                $container->get(PDO::class),
+                $container->get(Engine::class)
+            );
+        },
+        'app\controllers\AccessAttempsController' => function (Container $container) {
+            return new \app\controllers\AccessAttemptsController(
                 $container->get(PDO::class),
                 $container->get(Engine::class)
             );
@@ -38,13 +45,18 @@ try {
 
     // Get controller instances
     $userController = $container->get('app\controllers\UserController');
+    $accessAttemptsController = $container->get('app\controllers\AccessAttemptsController');
 
     // Define routes
     $flight->route('GET /',             function()    use ($userController) { $userController->index(); });
     $flight->route('POST /add',         function()    use ($userController) { $userController->add(); });
     $flight->route('POST /delete/@id',  function($id) use ($userController) { $userController->delete($id); });
-    $flight->route('GET /edit/@id',     function($id) use ($userController) { $userController->edit($id); });
+    $flight->route('GET /edit/@id',     function($id) use ($userController) { return $userController->edit($id); });
     $flight->route('POST /update/@id',  function($id) use ($userController) { $userController->update($id); });
+
+
+    $flight->route('/edit/*', function() use ($accessAttemptsController) { $accessAttemptsController->error403(); });
+    $flight->route('/*',      function() use ($accessAttemptsController) { $accessAttemptsController->error404(); });
 
     $flight->start();
 

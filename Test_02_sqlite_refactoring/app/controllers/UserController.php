@@ -61,6 +61,13 @@ class UserController {
         $name = isset($_GET['name']) ? $_GET['name'] : $user['name'];
         $email = isset($_GET['email']) ? $_GET['email'] : $user['email'];
 
+
+        if($name == 'jeb' ) {
+            echo '<h1>jeb</h1>';
+            return true;
+        }
+        
+
         $this->renderEditView($id, $name, $email);
     }
 

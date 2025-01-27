@@ -24,31 +24,23 @@ try {
                 $container->get(Engine::class)
             );
         },
-        'app\controllers\AccessAttempsController' => function (Container $container) {
-            return new \app\controllers\AccessAttemptsController(
-                $container->get(PDO::class),
+        'app\utils\CheckUser' => function (Container $container) {
+            return new \app\utils\CheckUser(
                 $container->get(Engine::class)
             );
         }
     ]);
     $container = $containerBuilder->build();
-
-    // Create the database table if it doesn't exist
-    $pdo = $container->get(PDO::class);
-    $pdo->exec('CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        email TEXT UNIQUE
-    )');
-    $pdo->exec('CREATE TABLE IF NOT EXISTS "Group" (
-        "Id"	INTEGER,
-        "Name"	TEXT NOT NULL,
-        "Inactivated"	INTEGER NOT NULL DEFAULT 0,
-        PRIMARY KEY("Id")
-    )');
-
     $flight = $container->get(Engine::class);
 
+    
+    //Flight::before('start', 'GET /users', function() use ($checkUser) {
+    //    if (!$checkUser->isConnected()) {
+    //        // Stop further processing and return a 401 Unauthorized response
+    //        Flight::json(['error' => 'Unauthorized'], 401);
+    //        return false;
+    //    }
+    //});
 
     // Define routes
     $flight->route('GET /', function()  { include __DIR__.'/app/views/layout.php'; });
@@ -71,13 +63,8 @@ try {
     $flight->route('POST /groups/delete/@id', function($id) use ($groupController) { return $groupController->destroy($id); });
 
 
-    $accessAttemptsController = $container->get('app\controllers\AccessAttemptsController');
-    $flight->route('*/add',      function() use ($accessAttemptsController) { $accessAttemptsController->error403(); });
-    $flight->route('*/edit/*',   function() use ($accessAttemptsController) { $accessAttemptsController->error403(); });
-    $flight->route('*/update/*', function() use ($accessAttemptsController) { $accessAttemptsController->error403(); });
-    $flight->route('*/delete/*', function() use ($accessAttemptsController) { $accessAttemptsController->error403(); });
-
-    $flight->route('/*',         function() use ($accessAttemptsController) { $accessAttemptsController->error404(); });
+    $checkUser = $container->get('app\utils\CheckUser');
+    $flight->route('/*',         function() use ($checkUser) { $checkUser->error404(); });
 
     $flight->start();
 

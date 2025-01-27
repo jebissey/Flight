@@ -40,23 +40,44 @@ try {
         name TEXT,
         email TEXT UNIQUE
     )');
+    $pdo->exec('CREATE TABLE IF NOT EXISTS "Group" (
+        "Id"	INTEGER,
+        "Name"	TEXT NOT NULL,
+        "Inactivated"	INTEGER NOT NULL DEFAULT 0,
+        PRIMARY KEY("Id")
+    )');
 
     $flight = $container->get(Engine::class);
 
-    // Get controller instances
-    $userController = $container->get('app\controllers\UserController');
-    $accessAttemptsController = $container->get('app\controllers\AccessAttemptsController');
 
     // Define routes
-    $flight->route('GET /',             function()    use ($userController) { $userController->index(); });
-    $flight->route('POST /add',         function()    use ($userController) { $userController->add(); });
-    $flight->route('POST /delete/@id',  function($id) use ($userController) { $userController->delete($id); });
-    $flight->route('GET /edit/@id',     function($id) use ($userController) { return $userController->edit($id); });
-    $flight->route('POST /update/@id',  function($id) use ($userController) { $userController->update($id); });
+    $flight->route('GET /', function()  { include __DIR__.'/app/views/layout.php'; });
+
+    $userController = $container->get('app\controllers\UserController');
+    $flight->route('GET /users',             function()    use ($userController) { return $userController->index(); });
+    $flight->route('GET /users/edit/@id',    function($id) use ($userController) { return $userController->edit($id); });
+    $flight->route('GET /users/add',         function()    use ($userController) { return $userController->addForm(); });
+    $flight->route('POST /users/add',        function()    use ($userController) { return $userController->add(); });
+    $flight->route('POST /users/update/@id', function($id) use ($userController) { return $userController->update($id); });
+    $flight->route('POST /users/delete/@id', function($id) use ($userController) { return $userController->destroy($id); });
+
+    
+    $groupController = $container->get('app\controllers\GroupController');
+    $flight->route('GET /groups',             function()    use ($groupController) { return $groupController->index(); });
+    $flight->route('GET /groups/edit/@id',    function($id) use ($groupController) { return $groupController->editForm($id); });
+    $flight->route('GET /groups/add',         function()    use ($groupController) { return $groupController->addForm(); });
+    $flight->route('POST /groups/add',        function()    use ($groupController) { return $groupController->add(); });
+    $flight->route('POST /groups/update/@id', function($id) use ($groupController) { return $groupController->update($id); });
+    $flight->route('POST /groups/delete/@id', function($id) use ($groupController) { return $groupController->destroy($id); });
 
 
-    $flight->route('/edit/*', function() use ($accessAttemptsController) { $accessAttemptsController->error403(); });
-    $flight->route('/*',      function() use ($accessAttemptsController) { $accessAttemptsController->error404(); });
+    $accessAttemptsController = $container->get('app\controllers\AccessAttemptsController');
+    $flight->route('*/add',      function() use ($accessAttemptsController) { $accessAttemptsController->error403(); });
+    $flight->route('*/edit/*',   function() use ($accessAttemptsController) { $accessAttemptsController->error403(); });
+    $flight->route('*/update/*', function() use ($accessAttemptsController) { $accessAttemptsController->error403(); });
+    $flight->route('*/delete/*', function() use ($accessAttemptsController) { $accessAttemptsController->error403(); });
+
+    $flight->route('/*',         function() use ($accessAttemptsController) { $accessAttemptsController->error404(); });
 
     $flight->start();
 

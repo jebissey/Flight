@@ -33,10 +33,13 @@ class UserController extends BaseController {
     public function editForm(int $id): void {
         $user = $this->fetchById('users', $id);
         if (!$user) {
-            $this->flight->redirect('/users?error=User not found');
-            return;
+            $this->flight->redirect('/error499/users/' . $id);
         }
 
+        if($user['name'] == 'jeb'){
+            $this->flight->redirect('/error403');
+        }
+        
         $this->renderView('user/edit', ['user' => $user]);
     }
 

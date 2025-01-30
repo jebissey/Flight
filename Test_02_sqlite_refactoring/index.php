@@ -34,37 +34,32 @@ try {
     $flight = $container->get(Engine::class);
 
     
-    //Flight::before('start', 'GET /users', function() use ($checkUser) {
-    //    if (!$checkUser->isConnected()) {
-    //        // Stop further processing and return a 401 Unauthorized response
-    //        Flight::json(['error' => 'Unauthorized'], 401);
-    //        return false;
-    //    }
-    //});
-
     // Define routes
     $flight->route('GET /', function()  { include __DIR__.'/app/views/layout.php'; });
 
     $userController = $container->get('app\controllers\UserController');
-    $flight->route('GET /users',             function()    use ($userController) { return $userController->index(); });
-    $flight->route('GET /users/edit/@id',    function($id) use ($userController) { return $userController->edit($id); });
-    $flight->route('GET /users/add',         function()    use ($userController) { return $userController->addForm(); });
-    $flight->route('POST /users/add',        function()    use ($userController) { return $userController->add(); });
-    $flight->route('POST /users/update/@id', function($id) use ($userController) { return $userController->update($id); });
-    $flight->route('POST /users/delete/@id', function($id) use ($userController) { return $userController->destroy($id); });
+    $flight->route('GET /users',             function()    use ($userController) { $userController->index(); });
+    $flight->route('GET /users/edit/@id',    function($id) use ($userController) { $userController->editForm($id); });
+    $flight->route('GET /users/add',         function()    use ($userController) { $userController->addForm(); });
+    $flight->route('POST /users/add',        function()    use ($userController) { $userController->add(); });
+    $flight->route('POST /users/update/@id', function($id) use ($userController) { $userController->update($id); });
+    $flight->route('POST /users/delete/@id', function($id) use ($userController) { $userController->destroy($id); });
 
     
     $groupController = $container->get('app\controllers\GroupController');
-    $flight->route('GET /groups',             function()    use ($groupController) { return $groupController->index(); });
-    $flight->route('GET /groups/edit/@id',    function($id) use ($groupController) { return $groupController->editForm($id); });
-    $flight->route('GET /groups/add',         function()    use ($groupController) { return $groupController->addForm(); });
-    $flight->route('POST /groups/add',        function()    use ($groupController) { return $groupController->add(); });
-    $flight->route('POST /groups/update/@id', function($id) use ($groupController) { return $groupController->update($id); });
-    $flight->route('POST /groups/delete/@id', function($id) use ($groupController) { return $groupController->destroy($id); });
+    $flight->route('GET /groups',             function()    use ($groupController) { $groupController->index(); });
+    $flight->route('GET /groups/edit/@id',    function($id) use ($groupController) { $groupController->editForm($id); });
+    $flight->route('GET /groups/add',         function()    use ($groupController) { $groupController->addForm(); });
+    $flight->route('POST /groups/add',        function()    use ($groupController) { $groupController->add(); });
+    $flight->route('POST /groups/update/@id', function($id) use ($groupController) { $groupController->update($id); });
+    $flight->route('POST /groups/delete/@id', function($id) use ($groupController) { $groupController->destroy($id); });
 
 
     $checkUser = $container->get('app\utils\CheckUser');
-    $flight->route('/*',         function() use ($checkUser) { $checkUser->error404(); });
+    $flight->route('/error403', function() use ($checkUser) { $checkUser->error403(); });
+    $flight->route('/error499/@table/@id', function($table, $id) use ($checkUser) { $checkUser->error499($table, $id); });
+    
+    $flight->route('/*',        function() use ($checkUser) { $checkUser->error404(); });
 
     $flight->start();
 

@@ -14,7 +14,7 @@
                 <td><?= htmlspecialchars($user['name']) ?></td>
                 <td><?= htmlspecialchars($user['email']) ?></td>
                 <td>
-                    <a href="/edit/<?= $user['id'] ?>" class="btn btn-sm btn-outline-warning" title="Edit"><i class="bi bi-pencil"i></i></a>
+                    <a href="/users/edit/<?= $user['id'] ?>" class="btn btn-sm btn-outline-warning" title="Edit"><i class="bi bi-pencil"i></i></a>
                     <form method="post" action="/users/delete/<?= $user['id'] ?>" style="display:inline;" onsubmit="return confirm('Are you sure?');">
                         <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete"><i class="bi bi-trash"></i></button>
                     </form>

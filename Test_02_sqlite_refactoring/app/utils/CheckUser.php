@@ -31,9 +31,12 @@ class CheckUser{
     }
 
     public function error404() {
-        $this->error('Not found', 404);
+        $this->error('Page not found', 404);
     }
-
+    
+    public function error499($table, $id) {
+        $this->error("Record $id not found in table $table", 499);
+    }
 
     private function error(string $message, int $code) {
         echo '<h1>' . $_SERVER['REQUEST_URI'] . '</h1>';

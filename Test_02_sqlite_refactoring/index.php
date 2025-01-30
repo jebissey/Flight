@@ -34,6 +34,17 @@ try {
     $flight = $container->get(Engine::class);
 
     
+
+// Error handling
+Flight::map('error', function (Throwable $error) {
+    echo $error->getTraceAsString();
+  });
+Flight::set('flight.log_errors', true);
+
+
+
+
+
     // Define routes
     $flight->route('GET /', function()  { include __DIR__.'/app/views/layout.php'; });
 
@@ -58,9 +69,8 @@ try {
     $checkUser = $container->get('app\utils\CheckUser');
     $flight->route('/error403', function() use ($checkUser) { $checkUser->error403(); });
     $flight->route('/error499/@table/@id', function($table, $id) use ($checkUser) { $checkUser->error499($table, $id); });
-    
-    $flight->route('/*',        function() use ($checkUser) { $checkUser->error404(); });
 
+    $flight->route('/*',        function() use ($checkUser) { $checkUser->error404(); });
     $flight->start();
 
 } catch (PDOException $e) {

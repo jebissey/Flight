@@ -5,6 +5,14 @@ use flight\Engine;
 use DI\Container;
 use DI\ContainerBuilder;
 
+use Tracy\Debugger;
+if ($_SERVER['SERVER_NAME'] === 'localhost') {
+    Debugger::enable(Debugger::Development, __DIR__ . '/log');
+} else {
+    Debugger::enable(Debugger::Production);
+}
+
+
 $containerBuilder = new ContainerBuilder();
 $containerBuilder->addDefinitions([
     PDO::class => function () {

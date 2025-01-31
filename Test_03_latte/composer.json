@@ -2,7 +2,8 @@
     "require": {
         "flightphp/core": "^3.13",
         "latte/latte": "^3.0",
-        "php-di/php-di": "^7.0"
+        "php-di/php-di": "^7.0",
+        "tracy/tracy": "^2.10"
     },
     "autoload": {
         "psr-4": {
